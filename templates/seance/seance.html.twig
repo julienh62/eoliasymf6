@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SeanceController!{% endblock %}
+
+{% block body %}
+<!--<main class="container">
+        <section class="row">
+            <div class="col-12">
+             {% for seance in seances %}
+              <h3>Activités:{{ seance.name }}</h3>
+            </div>
+            <div class="col-12">
+            Places disponibles:{{ seance.stock }}
+            </div>
+          {% endfor %} 
+          </section>
+    </main>  -->
+   <div class="container text-center">
+     <div class="row align-items-start"> 
+         <div class="col">
+           <h3>Activités:</h3>
+         </div>
+         <div class="col">
+             <h4>Places disponibles: </h4>
+         </div>
+      </div>
+    </div>
+
+     {% for seance in seances %}
+ <div class="container text-center">
+  <div class="row align-items-start">
+     
+    <div class="col">
+     
+    </div>
+    <div class="col">
+    
+    </div>
+  </div>
+  
+  <div class="row align-items-end">
+  
+    <div class="col">
+     {{ seance.name }}
+    </div>
+    <div class="col">
+      {{ seance.stock }}
+
+     
+    </div>
+  </div>
+</div>
+  {% endfor %} 
+{% endblock %}
