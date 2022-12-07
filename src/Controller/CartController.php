@@ -14,45 +14,58 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(SessionInterface $session, SeanceRepository $seanceRepository): Response
     {
-        return $this->render('cart/index.html.twig', [   
-        ]);
+        $cart = $session->get("cart", []);
+        $total = 0;
+        // on fabrique les données
+        $dataCart = [] ;
+
+       foreach($cart as $id => $quantite){
+           $seance = $seanceRepository->find($id);
+         $dataCart[] = [
+              "seances" => $seance,
+               "quantite" => $quantite
+          ];
+           $total += $seance->getStock() * $quantite;
+      }
+
+        return $this->render('cart/index.html.twig', compact("dataCart", "total"));
     }
+
+ // #[Route('/add/{id<[0-9]+>}', name: 'add')]
+ //  public function add(Seance $seance, SessionInterface $session)
+//   {
+      // on récupère le panier actuel
+  //    $cart = $session->get("cart", []);
+ //     $id = $seance->getId();
+
+  //   if(!empty($cart[$id])){
+   //    $cart[$id]++;
+   //    }else{
+  //    $cart[$id] = 1;
+   //    }
+      //  on sauvegarde dans la session
+   //   $session->set("cart", $cart);
+   //     dd($session);
+   // }
 
   #[Route('/add/{id<[0-9]+>}', name: 'add')]
-   public function add(Seance $seance, SessionInterface $session)
-   {
-      // on récupère le panier actuel
+    public function add($id, SessionInterface $session)
+    {
+       // on récupère le panier actuel
       $cart = $session->get("cart", []);
-      $id = $seance->getId();
-
+    
      if(!empty($cart[$id])){
        $cart[$id]++;
-       }else{
-      $cart[$id] = 1;
+      }else{
+       $cart[$id] = 1;
       }
-     //  on sauvegarde dans la session
-      $session->set("cart", $cart);
-        dd($session);
-    }
-
-    //#[Route('/add/{id<[0-9]+>}', name: 'add')]
-  //  public function add($id, SessionInterface $session)
- //   {
-       // on récupère le panier actuel
-   //    $cart = $session->get("cart", []);
-    
-  //     if(!empty($cart[$id])){
-   //     $cart[$id]++;
-   //    }else{
-   //     $cart[$id] = 1;
-   //    }
        //on sauvegarde dans la session
-    //   $session->set("cart", $cart);
+      $session->set("cart", $cart);
         
-    //   return $this->redirectToRoute('cart_index');
-    //}
+       return $this->redirectToRoute('cart_index');
+    }
 
 
   
