@@ -7,13 +7,12 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 class UserFixtures extends Fixture
 {
     public function __construct(
-        private UserPasswordHasherInterface $passwordEncoder,
-        private SluggerInterface $slugger
+        private UserPasswordHasherInterface $passwordEncoder
     )
     {
 

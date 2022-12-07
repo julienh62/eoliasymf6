@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SeanceRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SeanceRepository::class)]
@@ -18,6 +19,10 @@ class Seance
 
     #[ORM\Column]
     private ?int $stock = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $datedelaseance = null;
+
 
     public function getId(): ?int
     {
@@ -47,4 +52,18 @@ class Seance
 
         return $this;
     }
+
+    public function getDatedelaseance(): ?\DateTimeInterface
+    {
+        return $this->datedelaseance;
+    }
+
+    public function setDatedelaseance(\DateTimeInterface $datedelaseance): self
+    {
+        $this->datedelaseance = $datedelaseance;
+
+        return $this;
+    }
+
+    
 }

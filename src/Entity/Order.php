@@ -20,6 +20,12 @@ class Order
     #[ORM\Column(nullable: true)]
     private ?int $price = null;
 
+    #[ORM\Column]
+    private ?int $pricejeune = null;
+
+    #[ORM\Column]
+    private ?int $pricekid = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +51,30 @@ class Order
     public function setPrice(?int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getPricejeune(): ?int
+    {
+        return $this->pricejeune;
+    }
+
+    public function setPricejeune(int $pricejeune): self
+    {
+        $this->pricejeune = $pricejeune;
+
+        return $this;
+    }
+
+    public function getPricekid(): ?int
+    {
+        return $this->pricekid;
+    }
+
+    public function setPricekid(int $pricekid): self
+    {
+        $this->pricekid = $pricekid;
 
         return $this;
     }

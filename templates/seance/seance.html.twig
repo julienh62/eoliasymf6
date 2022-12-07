@@ -12,6 +12,9 @@
             <div class="col-12">
             Places disponibles:{{ seance.stock }}
             </div>
+            <div class="col-12">
+          <p>  Dates:{{ seance.datedelaseance|date("Y/m/d") }} </p>
+            </div>
           {% endfor %} 
           </section>
     </main>  -->
@@ -22,6 +25,9 @@
          </div>
          <div class="col">
              <h4>Places disponibles: </h4>
+         </div>
+          <div class="col">
+             <h4>Dates: </h4>
          </div>
       </div>
     </div>
