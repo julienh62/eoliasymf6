@@ -27,7 +27,7 @@ class CartController extends AbstractController
               "seances" => $seance,
                "quantite" => $quantite
           ];
-           $total += $seance->getStock() * $quantite;
+           $total += $seance->getPrice() * $quantite;
       }
 
         return $this->render('cart/index.html.twig', compact("dataCart", "total"));

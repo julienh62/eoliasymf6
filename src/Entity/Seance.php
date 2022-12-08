@@ -20,8 +20,14 @@ class Seance
     #[ORM\Column]
     private ?int $stock = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datedelaseance = null;
+
+    #[ORM\Column]
+    private ?int $price = null;
+
+  //  #[ORM\Column(type: Types::DATE_MUTABLE)]
+  //  private ?\DateTimeInterface $datedelaseance = null;
 
 
     public function getId(): ?int
@@ -53,14 +59,38 @@ class Seance
         return $this;
     }
 
+   // public function getDatedelaseance(): ?\DateTimeInterface
+   // {
+  //     return $this->datedelaseance;
+  //  }
+
+ //   public function setDatedelaseance(\DateTimeInterface $datedelaseance): self
+ //   {
+  //      $this->datedelaseance = $datedelaseance;
+
+  //      return $this;
+ //   }
+
     public function getDatedelaseance(): ?\DateTimeInterface
     {
         return $this->datedelaseance;
     }
 
-    public function setDatedelaseance(\DateTimeInterface $datedelaseance): self
+    public function setDatedelaseance(?\DateTimeInterface $datedelaseance): self
     {
         $this->datedelaseance = $datedelaseance;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
