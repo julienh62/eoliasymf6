@@ -31,9 +31,9 @@ class SeanceFixtures extends Fixture
 
         for($sean = 1; $sean <= 5; $sean++){
             $seance = new Seance();
-            $seance->setName($faker->randomElement($array = array ('Char à voile','Catamaran','Char à voile kids')));
+            //$seance->setName($faker->randomElement($array = array ('Char à voile','Catamaran','Char à voile kids')));
             //$seance->setStock($faker->numberBetween($min = 5, $max = 8));
-            $seance->setPrice('52');
+            $seance->setPrice('50');
             $seance->setStock('12');
             $seance->setDatedelaseance($faker->dateTimeInInterval('0 week', '+10 days'));
             $seance->setCategory($category);

@@ -21,7 +21,7 @@
         <tbody>
         {% for element in dataCart %}  
                 <tr>
-                    <td>{{ element.activites.name }} </td>
+                    <td>{{ element.activites.category.title }} </td>
                     <td >{{ element.activites.price }}  €</td>
                     <td>  {{ element.quantite  }}   </td>
                     <td>  {{ element.quantite * element.activites.price }} </td>
