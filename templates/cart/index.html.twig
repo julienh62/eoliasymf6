@@ -19,11 +19,12 @@
             </tr>
         </thead>
         <tbody>
-          {#{% for element in dataPanier %} #}
+        {% for element in dataCart %}  
                 <tr>
-                    <td></td>
-                    <td class="text-end"> €</td>
-                    <td>     quantité</td>
+                    <td>{{ element.activites.name }} </td>
+                    <td >{{ element.activites.price }}  €</td>
+                    <td>  {{ element.quantite  }}   </td>
+                    <td>  {{ element.quantite * element.activites.price }} </td>
                     <td class="text-end"> €</td>
                     <td>
                         <a href="#" class="btn btn-success">
@@ -37,21 +38,22 @@
                         </a>
                     </td>
                 </tr>
-         {#   {% else %} #}
+          {% else %} 
                 <tr>
                     <td colspan="5" class="text-center">Votre panier est vide</td>
                 </tr>
-         {#   {% endfor %} #}
+           {% endfor %} 
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3">Total</td>
+                <td colspan="3">Total </td>
                 <td class="text-end">total €</td>
                 <td>
                     <a href="#" class="btn btn-danger">
                         
                     </a>
                 </td>
+                
             </tr>
         </tfoot>
     </table>

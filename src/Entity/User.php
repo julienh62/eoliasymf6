@@ -50,11 +50,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 150)]
     private ?string $phone = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+   
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Order::class)]
     private Collection $orders;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
     {
@@ -215,17 +217,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
+   
+   
 
     /**
      * @return Collection<int, Order>
@@ -253,6 +248,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
