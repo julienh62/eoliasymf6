@@ -62,13 +62,6 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_index');
     }
 
-
-
-
-
-
-       
-
     // #[Route('/add/{id<[0-9]+>}', name: 'add')]
     //  public function add(Seance $seance, SessionInterface $session)
 //   {
@@ -85,9 +78,66 @@ class CartController extends AbstractController
     //   $session->set("cart", $cart);
     //     dd($session);
     // }
-
    
 
+   #[Route('/remove/{id<[0-9]+>}', name: 'remove')]
+    public function remove($id, SessionInterface $session)
+    {
+        // on récupère le panier actuel
+        $cart = $session->get("cart", []);
+
+        if(!empty($cart[$id])){
+            if($cart[$id] >1){
+                $cart[$id]--;
+            }else{
+            unset($cart[$id]);
+            }
+        }
+        //on sauvegarde dans la session
+        $session->set("cart", $cart);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+ #[Route('/delete/{id<[0-9]+>}', name: 'delete')]
+    public function date_get_last_errors($id, SessionInterface $session)
+    {
+        // on récupère le panier actuel
+        $cart = $session->get("cart", []);
+
+        if(!empty($cart[$id])){
+            unset($cart[$id]);
+        }
+        
+        //on sauvegarde dans la session
+        $session->set("cart", $cart);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+     #[Route('/delete', name: 'delete_all')]
+    public function deleteAll(SessionInterface $session)
+    {
+        
+       $session->set("cart", []);
+
+            unset($cart);
+     
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+ #[Route('/display', name: 'display')]
+    public function display(SessionInterface $session)
+    {
+        // on récupère le panier actuel
+       $session->set("cart", []);
+
+           
+     
+
+        return $this->redirectToRoute('cart_index');
+    }
 
 
 }
